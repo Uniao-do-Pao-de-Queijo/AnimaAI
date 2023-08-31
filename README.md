@@ -6,7 +6,7 @@
 
 <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white">
 
-> O AnimaAI é uma aplicação iOS inovadora desenvolvida em Swift que permite aos entusiastas de animes explorar e descobrir seus animes favoritos de uma maneira inteligente. Combinando a paixão por animes com a potência da inteligência artificial, o AnimaAI oferece uma experiência de visualização única.
+> O AnimaAI é uma aplicação iOS inovadora desenvolvida em Swift que permite aos entusiastas de animes explorar e descobrir seus animes favoritos de uma maneira inteligente. Combinando a paixão por animes com um design único, o AnimaAI oferece uma experiência de visualização única.
 
 ## 💼 SCREENSHOTS
 
