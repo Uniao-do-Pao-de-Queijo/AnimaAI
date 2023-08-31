@@ -20,7 +20,7 @@
 
 ## 🎥 DEMO
 
-[VIDEO DEMO - AnimaAI](https://github.com/yago-marques/WeCare/assets/84297648/c504d956-131e-4e8d-8e5f-a7f1b78063db)
+[VIDEO DEMO - AnimaAI](https://github.com/Uniao-do-Pao-de-Queijo/AnimaAI/blob/afef8726b3b124c05ee2515c58d92d371796663e/assets/demo.mov)
 
 ## 👩🏾‍💻 Technologies
 
