@@ -41,8 +41,8 @@ struct Attributes: Codable {
 
 
 struct PosterImage: Codable {
-    let tiny, large, small, medium: String
-    let original: String
+    let tiny, large, small, medium: String?
+    let original: String?
 }
 
 struct Titles: Codable {
