@@ -20,7 +20,8 @@
 
 ## 🎥 DEMO
 
-https://github.com/Uniao-do-Pao-de-Queijo/assets/demo.mp4
+https://github.com/Uniao-do-Pao-de-Queijo/AnimaAI/assets/55034436/695f8bd4-78ac-46ad-915c-1efe85224be8
+
 
 ## 👩🏾‍💻 Technologies
 
