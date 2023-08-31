@@ -12,9 +12,7 @@ class SplashViewController: UIViewController {
         }
     
     override func viewDidLoad() {
-
       super.viewDidLoad()
-        
         leftAnimation.contentMode = .scaleAspectFit
         leftAnimation.loopMode = .loop
         leftAnimation.animationSpeed = 0.5
@@ -24,7 +22,6 @@ class SplashViewController: UIViewController {
         rightAnimation.loopMode = .loop
         rightAnimation.animationSpeed = 0.5
         rightAnimation.play()
-        
     }
      
      

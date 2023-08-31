@@ -11,42 +11,48 @@ class AnimeViewController: UICollectionViewController{
           case main
       }
     
+    /// Função responsavel por atualizar e resetar os animes da minha tela e jogar meu scroll para o topo
     private func refresh(){
         self.viewModel.fetchAnimesData(page: 1)
         collectionView.setContentOffset(CGPoint(x:0,y:-100	), animated: true)
     }
     
+    /// Função responsavel por atualizar e resetar os animes da minha tela
     @objc func refreshFunc(_ sender: Any) {
         self.viewModel.fetchAnimesData(page: 1)
     }
     
+    
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var popularidade = UIAction(title: "Popularidade") { action in
         self.viewModel.sort = "-user_count"
         self.refresh()
     }
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var classificacao = UIAction(title: "Classificação Média") { action in
         
         self.viewModel.sort = "-average_rating"
         self.refresh()
     }
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var data = UIAction(title: "Data") { action in
         
             self.viewModel.sort =  "-start_date"
         self.refresh()
     }
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var adicionadosRecentemente = UIAction(title: "Adicionados recentemente") { action in
         
             self.viewModel.sort = "-created_at"
         self.refresh()
     }
-    
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var elements = [adicionadosRecentemente, data,classificacao,  popularidade]
     
-    
-    
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var menu = UIMenu(children: elements)
     
-    
+    /// Funções a seguir são para criar um botão para ordenação
     lazy var button: UIButton = {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,20 +63,21 @@ class AnimeViewController: UICollectionViewController{
         button.layer.cornerRadius = 8
         return button
     }()
-    
+    /// Funções a seguir são para criar um botão para ordenação
     private func addConstrainsButton(){
         button.isEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 46, leading: 20, bottom: 0, trailing: 20)
     }
-      
+    /// Funções a seguir são para criar um alerta na tela do usuário (quando tiver erro)
       lazy var alert: UIAlertController = {
           let alert =  UIAlertController(title: "Error!", message: "Ops, algo deu errado amigos.", preferredStyle: .alert)
           alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
 
           return alert
       }()
-      
+    
+    /// Funções a seguir são para criar um componente de refresh
       lazy var refreshControll: UIRefreshControl = {
           let refreshControll = UIRefreshControl()
           refreshControll.tintColor = .white
@@ -80,9 +87,9 @@ class AnimeViewController: UICollectionViewController{
       }()
     
     
+    /// Funções iniciar minha navigationBar com os estilos corretos
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(false)
-           
            self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.barStyle = .black
            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -90,22 +97,23 @@ class AnimeViewController: UICollectionViewController{
        }
        
  
-    
+    /// Funções quando a tela inicia
     override func viewDidLoad() {
            super.viewDidLoad()
         addConstrainsButton()
-      setLayout()
+        setLayout()
         setupDataSource()
-       }
+    }
 
 
-   
+    /// Funções para deixar minah barra branca
     override var preferredStatusBarStyle: UIStatusBarStyle {
            return .lightContent
        }
     
     
     
+    /// Função para criar toda as etapas do layout
         func setLayout() {
             collectionView.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1.00)
             collectionView.dataSource = self
@@ -133,6 +141,8 @@ class AnimeViewController: UICollectionViewController{
     
     
     func setupDataSource() {
+            
+        /// Responsavel por criar o layout da minha celula (cell)
            self.dataSource =
            UICollectionViewDiffableDataSource<Section, Anime>(collectionView: self.collectionView) {
                (collectionView, indexPath, source) -> UICollectionViewCell? in
@@ -144,7 +154,7 @@ class AnimeViewController: UICollectionViewController{
                return cell
            }
            
-           // Bind image data
+            /// Responsavel por redesenhar a minha tela toda vez que chega um dado novo do scroll infinito
            self.viewModel.animesData
                .receive(on: DispatchQueue.main)
                .sink { [weak self] updatedData in
@@ -157,6 +167,8 @@ class AnimeViewController: UICollectionViewController{
                }
                .store(in: &subscriptions)
            
+        
+          /// Responsavel por desabilitar ou mostrar uma notificação de erro quando o status mudar
            self.viewModel.process
                .receive(on: DispatchQueue.main)
                .sink { [weak self] status in
@@ -179,6 +191,7 @@ class AnimeViewController: UICollectionViewController{
        }
     
     
+    ///  Aqui é onde fica o clique do aplicaitvo
     override
     func collectionView(_ collectionView: UICollectionView,
              didSelectItemAt indexPath: IndexPath) {
@@ -193,6 +206,7 @@ class AnimeViewController: UICollectionViewController{
 }
 
 
+/// Layout das celulas
 extension AnimeViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
@@ -216,7 +230,7 @@ extension AnimeViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-
+/// Escuta o scroll do CollectionView e quando ele chega em um certo valor e não está em processamento ele busca mais dados
 extension AnimeViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         

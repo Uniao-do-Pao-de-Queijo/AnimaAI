@@ -17,7 +17,8 @@ class AnimeService{
     static func fetchAnimesData(page: Int, sort: String) -> AnyPublisher<Animes, Error> {
          var urlComponents = baseUrlComponents
          urlComponents.path = "/api/edge/anime"
-         urlComponents.queryItems = [
+        
+        urlComponents.queryItems = [
              URLQueryItem(name: "page[offset]", value: String((page-1)*limit)),
              URLQueryItem(name: "page[limit]", value: String(limit)),
              URLQueryItem(name: "sort", value: sort)

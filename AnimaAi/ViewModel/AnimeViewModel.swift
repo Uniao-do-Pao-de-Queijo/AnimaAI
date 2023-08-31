@@ -29,14 +29,12 @@ class AnimeViewModel {
     
     var sort = "-user_count"
     
-
     let animesData = CurrentValueSubject<[Anime], Never>([])
     
     let process = CurrentValueSubject<Process, Never>(.ready)
     
     func fetchAnimesData(page: Int) {
         self.process.send(.inProcess)
-        print(page)
         AnimeService.fetchAnimesData(page: page, sort: sort)
             .subscribe(on: utilityQueue)
             .sink(receiveCompletion: { [weak self] result in
